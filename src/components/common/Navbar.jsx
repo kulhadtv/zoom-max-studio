@@ -1,31 +1,41 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Corporate", href: "#about" },
-  { label: "Shows", href: "#shows" },
-  { label: "Inspire", href: "#services" },
-  { label: "Clients", href: "#clients" },
-  { label: "Career", href: "#career" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", path: "/" },
+  { label: "Corporate", path: "/about" },
+  { label: "Shows", path: "/shows" },
+  { label: "Inspire", path: "/services" },
+  { label: "Clients", path: "/clients" },
+  { label: "Career", path: "/career" },
+  { label: "Contact", path: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState("#home");
+  const [active, setActive] = useState("/");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (location.pathname === "/") {
+      const onScroll = () => setScrolled(window.scrollY > 40);
+      window.addEventListener("scroll", onScroll);
+      return () => window.removeEventListener("scroll", onScroll);
+    } else {
+      setScrolled(true);
+    }
+  }, [location.pathname]);
 
-  const handleNav = (href) => {
-    setActive(href);
+  useEffect(() => {
+    setActive(location.pathname);
+  }, [location.pathname]);
+
+  const handleNav = (path) => {
+    setActive(path);
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    navigate(path);
   };
 
   return (
@@ -43,10 +53,10 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <ul className="navbar__links">
             {NAV_LINKS.map((link) => (
-              <li key={link.href}>
+              <li key={link.path}>
                 <button
-                  className={`navbar__link ${active === link.href ? "active" : ""}`}
-                  onClick={() => handleNav(link.href)}
+                  className={`navbar__link ${active === link.path ? "active" : ""}`}
+                  onClick={() => handleNav(link.path)}
                 >
                   {link.label}
                 </button>
@@ -71,19 +81,18 @@ export default function Navbar() {
       <div className={`navbar__mobile-menu ${menuOpen ? "open" : ""}`}>
         {NAV_LINKS.map((link) => (
           <button
-            key={link.href}
+            key={link.path}
             className="navbar__mobile-link"
-            onClick={() => handleNav(link.href)}
+            onClick={() => handleNav(link.path)}
           >
             {link.label}
           </button>
         ))}
         <div className="navbar__mobile-cta">
-          <button className="btn-ghost" onClick={() => handleNav("#contact")}>
+          <button className="btn-ghost" onClick={() => handleNav("/contact")}>
             Get in Touch
           </button>
-          <button className="btn-primary" onClick={() => handleNav("#shows")}>
-            Our Work
+          <button className="btn-primary" onClick={() => handleNav("/shows")}> 
           </button>
         </div>
       </div>

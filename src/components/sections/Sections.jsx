@@ -198,7 +198,7 @@ export function About() {
               </div>
             ))}
           </div>
-          <button className="btn-primary">Discover Our Story</button>
+          {/* <button className="btn-primary">Discover Our Story</button> */}
         </div>
       </div>
     </section>
@@ -268,10 +268,10 @@ export function CtaBand() {
           producers to join the ZoomMax family.
         </p>
       </div>
-      <div className="cta-band__actions">
+      {/* <div className="cta-band__actions">
         <button className="btn-ghost">View Openings</button>
         <button className="btn-primary">Apply Now</button>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -290,34 +290,37 @@ export function Contact() {
           hear from you.
         </p>
       </div>
+
       <div className="contact-grid">
         <div className="contact-info">
           {[
             {
               icon: <LocationOnIcon fontSize="large" />,
               label: "Studio Address",
-              value: "ZoomMax House, Andheri West\nMumbai, Maharashtra 400053",
+              value: "XXXXX House, XXXXX West\nXXXXX City, XXXXXXX 000000",
             },
             {
               icon: <PhoneIcon fontSize="large" />,
               label: "Phone",
-              value: "+91 22 1234 5678\n+91 98765 43210",
+              value: "+XX XXXXX XXXXX\n+XX XXXXX XXXXX",
             },
             {
               icon: <EmailIcon fontSize="large" />,
               label: "Email",
-              value: "hello@zoommax.studio\nproductions@zoommax.studio",
+              value: "organisation@email.com\ncontact@organisation.com",
             },
             {
               icon: <AccessTimeIcon fontSize="large" />,
               label: "Office Hours",
-              value: "Mon – Fri: 9:30 AM – 7:00 PM\nSat: 10:00 AM – 4:00 PM",
+              value: "Mon – Fri: XX:XX AM – XX:XX PM\nSat: XX:XX AM – XX:XX PM",
             },
           ].map((item) => (
             <div key={item.label} className="contact-info__item">
               <div className="contact-info__icon">{item.icon}</div>
+
               <div>
                 <div className="contact-info__label">{item.label}</div>
+
                 <div className="contact-info__value">
                   {item.value.split("\n").map((line, i) => (
                     <span key={i}>
@@ -335,25 +338,30 @@ export function Contact() {
           <div className="form-row">
             <div className="form-field">
               <label>First Name</label>
-              <input type="text" placeholder="Arjun" />
+              <input type="text" placeholder="John" />
             </div>
+
             <div className="form-field">
               <label>Last Name</label>
-              <input type="text" placeholder="Sharma" />
+              <input type="text" placeholder="Doe" />
             </div>
           </div>
+
           <div className="form-row">
             <div className="form-field">
               <label>Email</label>
-              <input type="email" placeholder="hello@email.com" />
+              <input type="email" placeholder="organisation@email.com" />
             </div>
+
             <div className="form-field">
               <label>Phone</label>
-              <input type="tel" placeholder="+91 98765 43210" />
+              <input type="tel" placeholder="+XX XXXXX XXXXX" />
             </div>
           </div>
+
           <div className="form-field">
             <label>Enquiry Type</label>
+
             <select>
               <option value="">Select a category...</option>
               <option>Production Partnership</option>
@@ -363,10 +371,13 @@ export function Contact() {
               <option>General Enquiry</option>
             </select>
           </div>
+
           <div className="form-field">
             <label>Message</label>
+
             <textarea placeholder="Tell us about your project or enquiry..." />
           </div>
+
           <button
             type="submit"
             className="btn-primary"

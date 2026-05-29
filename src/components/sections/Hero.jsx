@@ -85,81 +85,145 @@ export default function Hero() {
   const slide = SLIDES[current];
 
   return (
-    <section id="home" className="hero">
-      {SLIDES.map((s, i) => (
-        <div
-          key={s.id}
-          className={`hero__slide ${i === current ? "active" : ""}`}
-        >
-          {s.image && (
-            <img
-              src={s.image}
-              alt={String(s.title).replace(/\n/g, " ")}
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: 6,
-                objectFit: "cover",
-                boxShadow: "0 8px 30px rgba(0,0,0,0.6)",
-              }}
-            />
-          )}
-          {/* <div className="hero__bg" style={{ background: s.bg }} /> */}
-          <div className="hero__overlay" />
-        </div>
-      ))}
-
-      <div className="hero__content">
-        <div className="hero__text">
-          <span className="hero__tag">{slide.tag}</span>
-          <h1 className="hero__title">
-            {slide.title.split("\n").map((line, i) =>
-              i === 1 ? (
-                <span key={i}>
-                  <em>{line}</em>
-                </span>
-              ) : (
-                <span key={i}>
-                  {line}
-                  <br />
-                </span>
-              ),
+    <>
+      <section id="home" className="hero">
+        {SLIDES.map((s, i) => (
+          <div
+            key={s.id}
+            className={`hero__slide ${i === current ? "active" : ""}`}
+          >
+            {s.image && (
+              <img
+                src={s.image}
+                alt={String(s.title).replace(/\n/g, " ")}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: 6,
+                  objectFit: "cover",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.6)",
+                }}
+              />
             )}
-          </h1>
-          <p className="hero__desc">{slide.description}</p>
+            {/* <div className="hero__bg" style={{ background: s.bg }} /> */}
+            <div className="hero__overlay" />
+          </div>
+        ))}
+
+        <div className="hero__content">
+          <div className="hero__text">
+            <span className="hero__tag">{slide.tag}</span>
+            <h1 className="hero__title">
+              {slide.title.split("\n").map((line, i) =>
+                i === 1 ? (
+                  <span key={i}>
+                    <em>{line}</em>
+                  </span>
+                ) : (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                ),
+              )}
+            </h1>
+            <p className="hero__desc">{slide.description}</p>
+          </div>
+
+          <div className="hero__badges">
+            {slide.platforms.map((p) => (
+              <div key={p} className="hero__platform-badge">
+                <span className="hero__platform-dot" />
+                {p}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="hero__badges">
-          {slide.platforms.map((p) => (
-            <div key={p} className="hero__platform-badge">
-              <span className="hero__platform-dot" />
-              {p}
-            </div>
+        {/* Arrows */}
+        <div className="hero__arrows">
+          <button className="hero__arrow" onClick={prev} aria-label="Previous">
+            ‹
+          </button>
+          <button className="hero__arrow" onClick={next} aria-label="Next">
+            ›
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="hero__dots">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              className={`hero__dot ${i === current ? "active" : ""}`}
+              onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Arrows */}
-      <div className="hero__arrows">
-        <button className="hero__arrow" onClick={prev} aria-label="Previous">
-          ‹
-        </button>
-        <button className="hero__arrow" onClick={next} aria-label="Next">
-          ›
-        </button>
-      </div>
+      <section id="corporate" className="corporate">
+        {/* ── Main Studio Block ── */}
+        <div className="corporate__block">
+          <div className="corporate__logo-wrap">
+            <span className="corporate__logo-text">
+              Zoom<em>Max</em>
+            </span>
+            <span className="corporate__logo-tag">Studio</span>
+          </div>
+          <p className="corporate__desc">
+            <strong>ZOOMMAX STUDIO</strong> is a reputed media and tech company
+            founded in 2010 by creative veterans. Since its inception, the
+            company has created and produced award-winning and popular feature
+            films, web series, television series, documentaries, events and
+            publications. The company operates its businesses under two
+            subsidiaries — Inspire Films Limited and Proto Entertainment Private
+            Limited.
+          </p>
+        </div>
 
-      {/* Dots */}
-      <div className="hero__dots">
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            className={`hero__dot ${i === current ? "active" : ""}`}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
-    </section>
+        <div className="corporate__divider" />
+
+        {/* ── Inspire Films Block ── */}
+        <div className="corporate__block">
+          <div className="corporate__logo-wrap">
+            <span className="corporate__sub-logo">
+              INSP<em>|</em>RE FILMS
+            </span>
+          </div>
+          <p className="corporate__desc">
+            <strong>INSPIRE FILMS</strong> is primarily engaged in the business
+            of creation, production, distribution, and exhibition of television
+            and digital content across Broadcasting Channels, OTT Platforms and
+            Apps as well as content writing, production and sale, purchase of
+            film rights.
+          </p>
+          <button className="corporate__more">more</button>
+        </div>
+
+        <div className="corporate__divider" />
+
+        {/* ── Proto Entertainment Block ── */}
+        <div className="corporate__block">
+          <div className="corporate__logo-wrap">
+            <span className="corporate__sub-logo corporate__sub-logo--grid">
+              <span>P|R</span>
+              <span>O|O</span>
+            </span>
+          </div>
+          <p className="corporate__desc">
+            <strong>PROTO ENTERTAINMENT PRIVATE LIMITED</strong>, a
+            distinguished media tech company, operates as a subsidiary under
+            ZoomMax Studio. Its core mission revolves around creating and
+            building a strong ecosystem of tech-enabled products for premium
+            digital content. The company's latest venture, PROTO, is a sleek
+            platform for the international exchange of content, innovation, and
+            creative collaboration.
+          </p>
+          <button className="corporate__more">more</button>
+        </div>
+      </section>
+    </>
   );
 }
